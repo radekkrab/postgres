@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Casts\Attribute;
 
 class Product extends Model
 {
@@ -18,10 +19,11 @@ class Product extends Model
         'data',
     ];
 
-    protected $casts = ['data' => 'array'];
+    protected $casts = ['data' => 'json'];
 
     public function scopeAvailable(Builder $query): void
     {
         $query->where('status', '=', 'available');
     }
+
 }

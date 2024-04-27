@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
+use Inertia\Response;
 
 class ProductController extends Controller
 {
@@ -25,9 +29,22 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-       dd($request);
+        $validated = $request->validate([
+            'name' => 'required|min:10',
+            'article' => 'required|alpha_num:ascii|unique:products',
+            'status' => [],
+            'colorSize' => [],
+        ]);
+
+        $validated["data"] = $validated["colorSize"];
+        
+        unset($validated["colorSize"]);
+
+        Product::create($validated);
+
+        return redirect('/dashboard');
     }
 
     /**
