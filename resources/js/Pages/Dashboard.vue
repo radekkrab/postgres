@@ -2,30 +2,35 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { ref } from 'vue';
 import { Head } from '@inertiajs/vue3';
-import Modal from '@/Components/Modal.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
 import { useForm } from '@inertiajs/vue3';
 import AddProduct from '@/Components/AddProduct.vue';
+import ViewProducts from '@/Components/ViewProducts.vue';
 
-defineProps(["products"]);
+defineProps(['products']);
 
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Главная" />
 
-    <AuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>
-        </template>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">You're logged in!</div>
-                </div>
-                <AddProduct />
+    <div class="flex">
+        <div class="left-panel w-1/6 bg-[#374050]">
+            <div class="flex">
+                <div class="logo px-6 py-8  bg-white rounded-br-[40px]"><img class="w-24" src="/img/logo.png" alt="logo"></div>
+                <p class="text-white font-roboto text-lg px-5 py-3 leading-5">Enterprise<br>Resourse<br>Planning</p>
             </div>
+            <p class="text-[#FFFFFF99] font-roboto text-lg mt-6 ml-16 leading-5"> <a href="#">Продукты</a></p>
         </div>
-    </AuthenticatedLayout>
+        <div class="right-panel w-5/6">
+            <AuthenticatedLayout>
+            <div class="flex justify-between">
+                <div class="table w-3/4"><ViewProducts /></div>
+                <div class="button pr-4"><AddProduct /></div>
+            </div>
+
+            
+            </AuthenticatedLayout>
+        </div>    
+    </div>
+    
 </template>

@@ -1,11 +1,8 @@
 <script setup>
     import { ref } from 'vue';
-    import { Head } from '@inertiajs/vue3';
     import Modal from '@/Components/Modal.vue';
-    import PrimaryButton from '@/Components/PrimaryButton.vue';
     import { useForm } from '@inertiajs/vue3';
 
-    defineProps(["products"]);
 
     const showAddProductModal = ref(false);
 
@@ -37,7 +34,7 @@ const delField = (index) => {
 </script>
 
 <template>
-    <PrimaryButton @click="addProductModal">Добавить продукт</PrimaryButton>
+    <button type="button" class="text-[11px] text-white mt-5 bg-[#0FC5FF] py-2 px-12 rounded-md" @click="addProductModal">Добавить</button>
     <Modal :show="showAddProductModal" @close="closeModal" >
         <div class="p-6 bg-[#374050] text-white font-roboto">
             <div class="flex justify-between">
@@ -45,7 +42,7 @@ const delField = (index) => {
                 <p class="text-2xl hover:cursor-pointer" @click="closeModal">&#x2715;</p>
             </div>
             
-            <form class="flex flex-col items-start" @submit.prevent="form.post('/product')">
+            <form class="flex flex-col items-start" @submit.prevent="form.post('/product', { onSuccess: () => form.reset() & closeModal() })">
                 <!-- article -->
                 <label class="text-[9px] mt-5 mb-1" for="article">Артикул</label>
                 <input class="w-4/5 h-8 rounded-md text-black text-[11px]" id="article" type="text" v-model="form.article">
@@ -69,7 +66,7 @@ const delField = (index) => {
                         <label class="text-[9px] mt-6 mb-1" for="{{ index }}">Значение</label>
                         <input class="block w-56 h-8 rounded-md text-black text-[11px]" id="{{ index }}" type="text" v-model="field.value">
                     </div>
-                    <p class="self-center text-[9px]" @click="delField(index)">del</p>
+                    <img class="self-center mt-3" src="/img/recycle.png" @click="delField(index)"></img>
                     </div>
                    <button class="mt-3 text-[9px] text-[#0FC5FF] border-b border-dashed border-[#0FC5FF]" type="button" @click="addField">+ Добавить атрибут</button> 
                 <!-- submit -->
