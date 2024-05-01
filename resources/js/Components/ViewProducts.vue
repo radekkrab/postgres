@@ -14,7 +14,7 @@
       showOpenProductModal.value = true;
     }
 
-    const closeModal = () => {
+    const closeProductModal = () => {
     showOpenProductModal.value = false;
     }
         
@@ -35,8 +35,8 @@
         <td v-for="prod in product.data">{{ prod['name']  }} : {{ prod['value']  }}</td>
      </tr>
     </table>
-    <Modal :show="showOpenProductModal" @close="closeModal">
+    <Modal :show="showOpenProductModal" @close="closeProductModal">
             <div class="siz-20 bg-black text-white">{{ view.name }}</div>
-            <Link :href="route('product.destroy', view)"><h1>Удалить</h1></Link>
+            <Link :href="route('product.destroy', view.id)" method="DELETE" as="button" @click="closeProductModal"><h1>Удалить</h1></Link>
     </Modal>
 </template>
