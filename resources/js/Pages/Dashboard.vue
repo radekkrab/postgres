@@ -23,12 +23,10 @@ defineProps(['products']);
         </div>
         <div class="right-panel w-5/6">
             <AuthenticatedLayout>
-            <div class="flex justify-between">
+            <div class="flex justify-between bg-[#F2F6FA] h-screen">
                 <div class="table w-3/4"><ViewProducts /></div>
                 <div class="button pr-4"><AddProduct /></div>
             </div>
-
-            
             </AuthenticatedLayout>
         </div>    
     </div>
