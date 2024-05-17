@@ -39,7 +39,7 @@ class ProductController extends Controller
         ]);
 
         $validated["data"] = $validated["colorSize"];
-        
+
         unset($validated["colorSize"]);
 
         Product::create($validated);
@@ -66,9 +66,23 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Product $product, Request $request)
     {
-        //
+        $validated = $request->validate([
+            'id' => [],
+            'name' => 'required|min:10',
+            'article' => 'required|alpha_num:ascii',
+            'status' => [],
+            'colorSize' => [],
+        ]);
+
+        $validated["data"] = $validated["colorSize"];
+
+        unset($validated["colorSize"]);
+
+        $product->update($validated);
+
+        return redirect('/dashboard');
     }
 
     /**

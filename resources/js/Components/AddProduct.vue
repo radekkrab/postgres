@@ -17,7 +17,7 @@ const closeModal = () => {
 const form = useForm({
   article: null,
   name: null,
-  status: null,
+  status: 'Доступен',
   colorSize: [],
 
 })
@@ -53,7 +53,10 @@ const delField = (index) => {
                 <div v-if="form.errors.name">{{ form.errors.name }}</div>
                 <!-- status -->
                 <label class="text-[9px] mt-4 mb-1" for="status">Статус</label>
-                <input class="w-4/5 h-8 rounded-md text-black text-[11px]" id="status" type="text" v-model="form.status" value="Доступен">
+                <select class="w-4/5 h-9 rounded-md text-black text-[11px]" name="status" id="status" v-model="form.status" >
+                    <option style="width: 80%; height: 2.25rem; border-radius: 0.375rem;"  value="Доступен" selected>Доступен</option>
+                    <option style="width: 80%; height: 2.25rem; border-radius: 0.375rem;" value="Не доступен">Не доступен</option>
+                </select>
                 <div v-if="form.errors.status">{{ form.errors.status }}</div>
                  <!-- atributes -->
                 <h3 class="font-bold text-[14px] mt-3 mb-3">Атрибуты</h3>

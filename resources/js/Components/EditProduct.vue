@@ -1,25 +1,33 @@
 <script setup>
-    import { ref } from 'vue';
+    import { ref, defineProps } from 'vue';
     import Modal from '@/Components/Modal.vue';
     import { useForm } from '@inertiajs/vue3';
 
-    
+
     const showEditProductModal = ref(false);
+
+    const emit = defineEmits(['sendshowOPM']);
+
+    const props = defineProps({ product: Object });
+
+    const showOPM = false;
 
     const editProductModal = () => {
     showEditProductModal.value = true;
-    showOpenProductModal.value = false;
+
 }
 
 const closeEditModal = () => {
     showEditProductModal.value = false;
+    emit('sendshowOPM', showOPM);
 }
 
 const form = useForm({
-  article: null,
-  name: null,
-  status: null,
-  colorSize: [],
+  id: props.product.id,
+  article: props.product.article,
+  name: props.product.name,
+  status: props.product.status,
+  colorSize: props.product.data,
 
 })
 
@@ -32,6 +40,7 @@ const delField = (index) => {
 }
 
 
+
 </script>
 
 <template>
@@ -39,11 +48,12 @@ const delField = (index) => {
     <Modal :show="showEditProductModal" @close="closeEditModal" >
         <div class="p-6 bg-[#374050] text-white font-roboto">
             <div class="flex justify-between">
-                <div class="h2 font-bold text-[20px]">Добавить продукт</div>
+                <div class="h2 font-bold text-[20px]">Редактировать {{ props.product.name }}</div>
                 <p class="text-2xl hover:cursor-pointer" @click="closeEditModal">&#x2715;</p>
             </div>
-            
-            <form class="flex flex-col items-start" @submit.prevent="form.post('/product', { onSuccess: () => form.reset() & closeModal() })">
+
+            <form class="flex flex-col items-start" @submit.prevent="form.put(route('product.update', props.product.id),  { onSuccess: () => form.reset() & closeEditModal() })">
+
                 <!-- article -->
                 <label class="text-[9px] mt-5 mb-1" for="article">Артикул</label>
                 <input class="w-4/5 h-8 rounded-md text-black text-[11px]" id="article" type="text" v-model="form.article">
@@ -69,10 +79,10 @@ const delField = (index) => {
                     </div>
                     <img class="self-center mt-3" src="/img/recycle.png" @click="delField(index)"></img>
                     </div>
-                   <button class="mt-3 text-[9px] text-[#0FC5FF] border-b border-dashed border-[#0FC5FF]" type="button" @click="addField">+ Добавить атрибут</button> 
+                   <button class="mt-3 text-[9px] text-[#0FC5FF] border-b border-dashed border-[#0FC5FF]" type="button" @click="addField">+ Добавить атрибут</button>
                 <!-- submit -->
-                <button class="text-[11px] mt-5 bg-[#0FC5FF] py-2 px-12 rounded-md" type="submit" :disabled="form.processing">Добавить</button>
+                <button class="text-[11px] mt-5 bg-[#0FC5FF] py-2 px-12 rounded-md" type="submit" :disabled="form.processing">Сохранить</button>
             </form>
-        </div>   
+        </div>
     </Modal>
 </template>
