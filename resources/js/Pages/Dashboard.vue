@@ -6,7 +6,7 @@ import { useForm } from '@inertiajs/vue3';
 import AddProduct from '@/Components/AddProduct.vue';
 import ViewProducts from '@/Components/ViewProducts.vue';
 
-defineProps(['products']);
+defineProps(['products', 'role']);
 
 </script>
 
@@ -28,7 +28,7 @@ defineProps(['products']);
                 <div class="button pr-4"><AddProduct /></div>
             </div>
             </AuthenticatedLayout>
-        </div>    
+        </div>
     </div>
-    
+
 </template>

@@ -60,8 +60,10 @@ const showingNavigationDropdown = ref(false);
                                         <DropdownLink :href="route('logout')" method="post" as="button">
                                             Log Out
                                         </DropdownLink>
+
                                     </template>
                                 </Dropdown>
+                                <h1 class="ml-4 font-roboto text-gray-500">Роль: {{ $page.props.auth.user.roles[0] }}</h1>
                             </div>
                         </div>
 

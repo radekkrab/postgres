@@ -40,7 +40,6 @@ const delField = (index) => {
 }
 
 
-
 </script>
 
 <template>
@@ -56,7 +55,7 @@ const delField = (index) => {
 
                 <!-- article -->
                 <label class="text-[9px] mt-5 mb-1" for="article">Артикул</label>
-                <input class="w-4/5 h-8 rounded-md text-black text-[11px]" id="article" type="text" v-model="form.article">
+                <input class="w-4/5 h-8 rounded-md text-black text-[11px]" id="article" type="text" v-model="form.article" :disabled = "$page.props.auth.user.roles[0] !== 'admin'">
                 <div v-if="form.errors.article">{{ form.errors.article }}</div>
                 <!-- name -->
                 <label class="text-[9px] mt-4 mb-1" for="name">Название</label>
