@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendNewProductMailJob;
 use App\Models\Product;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Inertia\Inertia;
-use Inertia\Response;
+
 
 class ProductController extends Controller
 {
@@ -43,6 +43,8 @@ class ProductController extends Controller
         unset($validated["colorSize"]);
 
         Product::create($validated);
+
+        dispatch(new SendNewProductMailJob(['article' => $validated["article"], 'name' => $validated["name"], 'status' => $validated["status"]]));
 
         return redirect('/dashboard');
     }
