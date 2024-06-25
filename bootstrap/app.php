@@ -1,5 +1,6 @@
 <?php
 
+use App\Jobs\SendNewProductMailJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -26,7 +27,7 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withSchedule(function(Schedule $schedule){
-        $schedule->exec('php artisan queue:work')->everyMinute();
+        $schedule->command('queue:work --stop-when-empty')->everyMinute();
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
