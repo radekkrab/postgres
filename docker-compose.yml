@@ -16,4 +16,19 @@ services:
       dockerfile: _docker/app/Dockerfile
     volumes:
       - ./:/var/www
+    depends_on:
+      - db
     container_name: project_app  
+  
+  db:
+    image: postgres
+    restart: always
+    volumes: 
+      - ./tmp/db:/var/lib/pgsql
+    environment:
+      POSTGRES_DB: lardocker
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    ports:
+      - "8101:5432"
+    container_name: project_db
