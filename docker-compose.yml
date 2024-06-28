@@ -16,9 +16,11 @@ services:
       dockerfile: _docker/app/Dockerfile
     volumes:
       - ./:/var/www
+    ports:
+      - "5173:5173"
     depends_on:
       - db
-    container_name: project_app  
+    container_name: project_app 
   
   db:
     image: postgres
