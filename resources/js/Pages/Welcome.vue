@@ -28,10 +28,10 @@ function handleImageError() {
 
 <template>
     <Head title="PIN" />
-    <div class="bg-gray-50 text-black/50 ">
+    <div class="bg-gray-100 text-black/50 ">
         <img
             id="background"
-            class="absolute scale-125"
+            class="absolute h-96 w-screen scale-x-150 lg:scale-125"
             src="img/welcome-bg.jpg"
         />
         <div class="relative min-h-screen flex flex-col items-end  selection:bg-[#FF2D20] selection:text-white">
@@ -41,15 +41,15 @@ function handleImageError() {
                         <Link
                             v-if="$page.props.auth.user"
                             :href="route('dashboard')"
-                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                            class="rounded-md px-3 py-2 text-black text-lg font-semibold ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                         >
-                            Dashboard
+                            Стена
                         </Link>
 
                         <template v-else>
                             <Link
                                 :href="route('login')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                                class="rounded-md px-3 py-2 text-black text-lg font-semibold ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 Войти
                             </Link>
@@ -57,7 +57,7 @@ function handleImageError() {
                             <Link
                                 v-if="canRegister"
                                 :href="route('register')"
-                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
+                                class="rounded-md px-3 py-2 text-black ring-1 ring-transparent text-lg font-semibold transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20]"
                             >
                                 Зарегистрироваться
                             </Link>

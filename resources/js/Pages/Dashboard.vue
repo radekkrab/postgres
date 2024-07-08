@@ -21,11 +21,11 @@ defineProps(['products', 'role']);
             </div>
             <p class="text-[#FFFFFF99] font-roboto text-lg mt-6 ml-16 leading-5"> <a href="#">Продукты</a></p>
         </div>
-        <div class="right-panel lg:w-5/6">
+        <div class="right-panel w-screen lg:w-5/6">
             <AuthenticatedLayout>
             <div class="flex flex-col lg:flex-row lg:justify-between bg-[#F2F6FA] h-screen">
-                <div class="table w-3/4"><ViewProducts /></div>
-                <div class="button pr-4 self-end lg:self-auto"><AddProduct /></div>
+                <div class="table w-screen lg:w-3/4"><ViewProducts /></div>
+                <div class="button pr-2 lg:pr-4 self-end lg:self-auto"><AddProduct /></div>
             </div>
             </AuthenticatedLayout>
         </div>
